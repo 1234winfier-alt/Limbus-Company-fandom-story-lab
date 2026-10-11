@@ -1,28 +1,27 @@
-# Limbus-Company-fandom-story-lab
-A space for Limbus Company fans to write novels and create stories together.
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>림버스 컴퍼니 팬덤 글 창작소</title>
+    <title>림버스 컴퍼니 팬덤 스토리 랩</title>
     <style>
         :root {
-            --bg-color: #0b0b0e;
-            --card-bg: #141419;
-            --card-hover: #1c1c24;
-            --accent-color: #cc2929;
-            --accent-hover: #e63939;
-            --text-main: #f0f0f5;
-            --text-sub: #9999a6;
-            --border-color: #262633;
+            --bg-color: #0d0d0d;
+            --card-bg: #161616;
+            --card-hover: #1f1f1f;
+            --accent-color: #a30000;
+            --accent-hover: #d10000;
+            --text-main: #f0f0f0;
+            --text-sub: #a0a0a0;
+            --border-color: #2a2a2a;
+            --font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--font-family);
         }
 
         body {
@@ -33,11 +32,10 @@ A space for Limbus Company fans to write novels and create stories together.
             min-height: 100vh;
         }
 
-        /* 상단 네비게이션바 */
         header {
             background-color: var(--card-bg);
             border-bottom: 1px solid var(--border-color);
-            padding: 0.8rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,153 +45,148 @@ A space for Limbus Company fans to write novels and create stories together.
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--accent-color);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .auth-nav button, .user-nav button {
-            background: transparent;
-            border: 1px solid var(--border-color);
+        .user-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            background-color: transparent;
             color: var(--text-main);
-            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
             border-radius: 4px;
             cursor: pointer;
+            transition: all 0.2s ease;
             font-size: 0.9rem;
-            transition: all 0.2s;
-            margin-left: 0.4rem;
         }
 
-        .auth-nav button.btn-primary {
+        .btn:hover {
+            border-color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
+            color: #fff;
+            font-weight: 600;
         }
 
-        .auth-nav button:hover, .user-nav button:hover {
-            border-color: var(--accent-color);
-            opacity: 0.9;
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
-        /* 본문 레이아웃 (한 화면에 밀도 있게 모인 구조) */
         main {
             flex: 1;
             max-width: 1000px;
             width: 100%;
-            margin: 1.5rem auto;
+            margin: 2rem auto;
             padding: 0 1rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 1.5rem;
         }
 
-        @media(max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* 사이드바 (프로필 및 메뉴) */
-        aside {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.2rem;
-        }
-
-        .profile-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .profile-card p {
-            font-size: 0.85rem;
-            color: var(--text-sub);
-            margin-bottom: 1rem;
-        }
-
-        /* 게시판 메인 영역 */
-        .content-section {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            min-height: 400px;
-        }
-
-        .section-header {
+        .controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .section-header h2 {
-            font-size: 1.2rem;
-            color: #fff;
-        }
-
-        .write-btn {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.85rem;
-        }
-
-        .write-btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        /* 게시글 목록 스타일 */
-        .post-list {
+        .categories {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
-        .post-item {
-            background-color: var(--bg-color);
+        .cat-btn {
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 6px;
+            color: var(--text-sub);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: 0.2s;
         }
 
-        .post-item:hover {
+        .cat-btn.active, .cat-btn:hover {
+            color: var(--text-main);
+            border-color: var(--accent-color);
+            background-color: rgba(163, 0, 0, 0.2);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .post-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
             border-color: var(--accent-color);
             background-color: var(--card-hover);
         }
 
+        .post-badge {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            color: var(--text-sub);
+        }
+
         .post-title {
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .post-preview {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
         }
 
         .post-meta {
+            margin-top: auto;
             font-size: 0.8rem;
             color: var(--text-sub);
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.6rem;
         }
 
-        /* 모달 팝업 디자인 */
         .modal {
             display: none;
             position: fixed;
@@ -201,134 +194,333 @@ A space for Limbus Company fans to write novels and create stories together.
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
         }
 
         .modal-content {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 2rem;
             border-radius: 8px;
             width: 100%;
-            max-width: 380px;
-            position: relative;
+            max-width: 500px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
         }
 
         .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: none;
             border: none;
             color: var(--text-sub);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            color: var(--text-sub);
             font-size: 0.85rem;
+            color: var(--text-sub);
         }
 
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.65rem;
+        .form-group input, .form-group textarea, .form-group select {
             background-color: var(--bg-color);
             border: 1px solid var(--border-color);
-            border-radius: 4px;
             color: var(--text-main);
+            padding: 0.6rem;
+            border-radius: 4px;
             font-size: 0.9rem;
         }
 
         .form-group textarea {
+            min-height: 120px;
             resize: vertical;
-            height: 120px;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 0.7rem;
-            background-color: var(--accent-color);
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--accent-hover);
+        .empty-msg {
+            text-align: center;
+            color: var(--text-sub);
+            grid-column: 1 / -1;
+            padding: 3rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 6px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 상단 바 -->
     <header>
-        <a href="#" class="logo">림버스 글 창작소</a>
-        <div id="navContainer">
-            <!-- 동적 렌더링 영역 -->
+        <a href="#" class="logo">
+            <span>🔴</span> LIMBUS STORY LAB
+        </a>
+        <div class="user-nav" id="userNav">
+            <!-- 자바스크립트로 로그인 상태에 따라 버튼 변경 -->
         </div>
     </header>
 
-    <!-- 메인 컨테이너 -->
     <main>
-        <!-- 사이드바 -->
-        <aside>
-            <div class="card profile-card" id="sideProfile">
-                <!-- 로그인 상태에 따라 변경 -->
+        <div class="controls">
+            <div class="categories">
+                <button class="cat-btn active" onclick="filterCategory('전체')">전체</button>
+                <button class="cat-btn" onclick="filterCategory('단편')">단편</button>
+                <button class="cat-btn" onclick="filterCategory('장편')">장편</button>
+                <button class="cat-btn" onclick="filterCategory('설정')">설정</button>
             </div>
-            <div class="card">
-                <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: #fff;">공지사항</h3>
-                <p style="font-size: 0.85rem; color: var(--text-sub); line-height: 1.4;">
-                    림버스 컴퍼니 팬픽션 및 자작 스토리를 자유롭게 공유하는 공간입니다. 닉네임과 비밀번호로 간편하게 가입하세요!
-                </p>
-            </div>
-        </aside>
+            <button class="btn btn-primary" onclick="openWriteModal()">+ 새 글 작성</button>
+        </div>
 
-        <!-- 게시판 영역 -->
-        <section class="content-section">
-            <div class="section-header">
-                <h2>창작 소설 게시판</h2>
-                <button class="write-btn" onclick="openWriteModal()">글작성</button>
-            </div>
-            <div class="post-list" id="postList">
-                <!-- 글 목록이 여기에 표시됩니다 -->
-            </div>
-        </section>
+        <div class="posts-grid" id="postsGrid">
+            <!-- 게시글 리스트가 들어갈 위치 -->
+        </div>
     </main>
 
-    <!-- 로그인 모달 -->
-    <div class="modal" id="loginModal">
+    <!-- Auth Modal (로그인 / 회원가입) -->
+    <div class="modal" id="authModal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('loginModal')">&times;</button>
-            <h2 style="font-size: 1.25rem; margin-bottom: 1.2rem;">로그인</h2>
-            <form onsubmit="handleLogin(event)">
+            <div class="modal-header">
+                <h3 id="authTitle">로그인</h3>
+                <button class="close-btn" onclick="closeModal('authModal')">&times;</button>
+            </div>
+            <form id="authForm" onsubmit="handleAuth(event)">
                 <div class="form-group">
                     <label>닉네임</label>
-                    <input type="text" id="loginNick" required placeholder="닉네임 입력">
+                    <input type="text" id="authNickname" required placeholder="닉네임을 입력하세요">
                 </div>
                 <div class="form-group">
                     <label>비밀번호</label>
-                    <input type="password" id="loginPass" required placeholder="비밀번호 입력">
+                    <input type="password" id="authPassword" required placeholder="비밀번호를 입력하세요">
                 </div>
-                <button type="submit" class="submit-btn">로그인</button>
+                <!-- 회원가입 시 추가 작성할 설정 필드 -->
+                <div class="form-group" id="settingsGroup" style="display: none;">
+                    <label>개인 설정 / 메모 (선택)</label>
+                    <textarea id="authSettings" placeholder="좋아하는 수인/캐릭터, 세계관 설정 등 개인 메모를 적어둘 수 있습니다."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;" id="authSubmitBtn">로그인</button>
+            </form>
+            <div style="text-align: center; font-size: 0.85rem; color: var(--text-sub);">
+                <span id="authToggleText">계정이 없으신가요?</span>
+                <a href="#" onclick="toggleAuthMode(event)" style="color: var(--accent-color); text-decoration: none; margin-left: 0.3rem;" id="authToggleLink">회원가입</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Write Modal (글 작성) -->
+    <div class="modal" id="writeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>글 작성</h3>
+                <button class="close-btn" onclick="closeModal('writeModal')">&times;</button>
+            </div>
+            <form onsubmit="handleWrite(event)">
+                <div class="form-group">
+                    <label>카테고리</label>
+                    <select id="writeCategory">
+                        <option value="단편">단편</option>
+                        <option value="장편">장편</option>
+                        <option value="설정">설정</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>제목</label>
+                    <input type="text" id="writeTitle" required placeholder="제목을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <textarea id="writeContent" required placeholder="스토리를 작성해주세요..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">게시하기</button>
             </form>
         </div>
     </div>
 
-    <!-- 회원가입 모달 -->
-    <div class="modal" id="signupModal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('signupModal')">&times;</button>
-            <h2 style="font-size: 1.25rem; margin-bottom: 1.
+    <script>
+        // 초기 데이터 (샘플 단편 글은 삭제 처리)
+        const initialPosts = [];
+
+        let posts = JSON.parse(localStorage.getItem('limbus_posts')) || initialPosts;
+        let users = JSON.parse(localStorage.getItem('limbus_users')) || {};
+        let currentUser = localStorage.getItem('limbus_current_user') || null;
+        let isSignUpMode = false;
+        let currentFilter = '전체';
+
+        function init() {
+            renderNav();
+            renderPosts();
+        }
+
+        function renderNav() {
+            const nav = document.getElementById('userNav');
+            if (currentUser) {
+                nav.innerHTML = `
+                    <span style="font-size: 0.9rem; color: var(--text-sub);">${currentUser} 님</span>
+                    <button class="btn" onclick="logout()">로그아웃</button>
+                `;
+            } else {
+                nav.innerHTML = `
+                    <button class="btn" onclick="openAuthModal(false)">로그인</button>
+                    <button class="btn btn-primary" onclick="openAuthModal(true)">회원가입</button>
+                `;
+            }
+        }
+
+        function renderPosts() {
+            const grid = document.getElementById('postsGrid');
+            const filtered = currentFilter === '전체' 
+                ? posts 
+                : posts.filter(p => p.category === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-msg">등록된 게시글이 없습니다. 첫 글을 작성해 보세요!</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(post => `
+                <div class="post-card">
+                    <span class="post-badge">${post.category}</span>
+                    <h4 class="post-title">${escapeHtml(post.title)}</h4>
+                    <p class="post-preview">${escapeHtml(post.content)}</p>
+                    <div class="post-meta">
+                        <span>작성자: ${escapeHtml(post.author)}</span>
+                        <span>${post.date}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCategory(cat) {
+            currentFilter = cat;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText === cat);
+            });
+            renderPosts();
+        }
+
+        function openAuthModal(signUp = false) {
+            isSignUpMode = signUp;
+            updateAuthModalUI();
+            document.getElementById('authModal').classList.add('active');
+        }
+
+        function toggleAuthMode(e) {
+            e.preventDefault();
+            isSignUpMode = !isSignUpMode;
+            updateAuthModalUI();
+        }
+
+        function updateAuthModalUI() {
+            document.getElementById('authTitle').innerText = isSignUpMode ? '회원가입' : '로그인';
+            document.getElementById('authSubmitBtn').innerText = isSignUpMode ? '가입하기' : '로그인';
+            document.getElementById('authToggleText').innerText = isSignUpMode ? '이미 계정이 있으신가요?' : '계정이 없으신가요?';
+            document.getElementById('authToggleLink').innerText = isSignUpMode ? '로그인' : '회원가입';
+            
+            // 회원가입 전용 설정 입력란 표기 제어
+            document.getElementById('settingsGroup').style.display = isSignUpMode ? 'flex' : 'none';
+        }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const nickname = document.getElementById('authNickname').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            const settings = document.getElementById('authSettings').value.trim();
+
+            if (isSignUpMode) {
+                if (users[nickname]) {
+                    alert('이미 존재하는 닉네임입니다.');
+                    return;
+                }
+                users[nickname] = { 
+                    password: password,
+                    settings: settings || ''
+                };
+                localStorage.setItem('limbus_users', JSON.stringify(users));
+                alert('회원가입이 완료되었습니다. 로그인해 주세요.');
+                isSignUpMode = false;
+                updateAuthModalUI();
+            } else {
+                if (!users[nickname] || users[nickname].password !== password) {
+                    alert('닉네임 또는 비밀번호가 올바르지 않습니다.');
+                    return;
+                }
+                currentUser = nickname;
+                localStorage.setItem('limbus_current_user', currentUser);
+                closeModal('authModal');
+                renderNav();
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('limbus_current_user');
+            renderNav();
+        }
+
+        function openWriteModal() {
+            if (!currentUser) {
+                alert('글을 작성하려면 로그인이 필요합니다.');
+                openAuthModal(false);
+                return;
+            }
+            document.getElementById('writeModal').classList.add('active');
+        }
+
+        function handleWrite(e) {
+            e.preventDefault();
+            const category = document.getElementById('writeCategory').value;
+            const title = document.getElementById('writeTitle').value.trim();
+            const content = document.getElementById('writeContent').value.trim();
+
+            const newPost = {
+                id: Date.now(),
+                category,
+                title,
+                content,
+                author: currentUser,
+                date: new Date().toLocaleDateString('ko-KR')
+            };
+
+            posts.unshift(newPost);
+            localStorage.setItem('limbus_posts', JSON.stringify(posts));
+            closeModal('writeModal');
+            
+            // 폼 초기화
+            document.getElementById('writeTitle').value = '';
+            document.getElementById('writeContent').value = '';
+            
+            renderPosts();
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        init();
+    </script>
+</body>
+</html>
